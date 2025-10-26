@@ -23,9 +23,9 @@ class Criterion(nn.Module):
 
 
 class Combiner(nn.Module):
-    """ TODO: Combiner module, which fuses textual and visual information.
+    """  : Combiner module, which fuses textual and visual information.
     Given an image feature and a text feature, you should fuse them to get a fused feature. The dimension of the fused feature should be embed_dim.
-    Hint: You can concatenate image and text features and feed them to a FC layer, or you can devise your own fusion module, e.g., add, multiply, or attention, to achieve a higher retrieval score.
+    You can concatenate image and text features and feed them to a FC layer, or you can devise your own fusion module, e.g., add, multiply, or attention, to achieve a higher retrieval score.
     """
     def __init__(self, vision_feature_dim, text_feature_dim, embed_dim):
         super(Combiner, self).__init__()
@@ -63,7 +63,7 @@ class Model(nn.Module):
         self.combiner.eval()
 
     def encode_image(self, image_paths):
-        """ TODO: Encode images to get image features by the vision encoder of clip model. See https://github.com/openai/CLIP
+        """  : Encode images to get image features by the vision encoder of clip model. See https://github.com/openai/CLIP
         Note: The clip model has loaded in the __init__() function. You do not need to create and load it on your own.
 
         Args:
@@ -85,7 +85,7 @@ class Model(nn.Module):
         return vision_features.float() # Convert to float32 data type
 
     def encode_text(self, texts):
-        """ TODO: Encode texts to get text features by the text encoder of clip model. See https://github.com/openai/CLIP
+        """  : Encode texts to get text features by the text encoder of clip model. See https://github.com/openai/CLIP
         Note: The clip model has loaded in the __init__() function. You do not need to create and load it on your own.
 
         Args:
@@ -151,7 +151,7 @@ def train(data_loader, model, criterion, optimizer, log_step=15):
         # print("hm", i)
         #scores = model(ref_img_paths, raw_captions, tgt_img_paths)
 
-        # TODO: Implement a training loop. You should clean gradients, calculate loss values, call the backpropagation algorithm, and call the optimizer to update the model, see https://pytorch.org/tutorials/beginner/basics/optimization_tutorial.html
+        #  : Implement a training loop. You should clean gradients, calculate loss values, call the backpropagation algorithm, and call the optimizer to update the model, see https://pytorch.org/tutorials/beginner/basics/optimization_tutorial.html
 
         
         scores = model(ref_img_paths, raw_captions, tgt_img_paths)
@@ -210,4 +210,5 @@ def save_ckp_rt(model,  ckp_path):
                 'vloss': model.valid_loss
             }, 
             ckp_path
+
         )  
