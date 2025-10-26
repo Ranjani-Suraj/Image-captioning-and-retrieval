@@ -197,7 +197,7 @@ class CaptioningModel(nn.Module):
             bos_emb = bos_emb.unsqueeze(0)
             # print(bos_emb.shape) #[1, 768]
             start_emb = torch.cat([bos_emb, img_mapped], dim = 0) # obtain start embedding [5, 768]
-            # start_emb = torch.cat([img_mapped, bos_emb], dim = 0) # 
+            # start_emb = torch.cat([bos_emb, img_mapped], dim = 0) # 
             # print("start emb shape", start_emb.shape)
             tokens = []
             for _ in range(self.max_len):
@@ -298,3 +298,4 @@ class CaptioningModel(nn.Module):
 
 
         return loss
+
